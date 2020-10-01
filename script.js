@@ -5,6 +5,14 @@
     //form-validation
      function validate()
      {    
+         var response = grecaptcha.getResponse();
+         if(response.length == 0) 
+         { 
+          alert("please verify you are humann!"); 
+          evt.preventDefault();
+          return false;
+          }
+
          let name=document.getElementById("name");
          let birthday=document.getElementById("myDate");
          let place=document.getElementById("mySelect");
@@ -161,18 +169,3 @@
           cell6.innerHTML = `${item.password}`;
       });
      }
-document.getElementById("my_captcha_form").addEventListener("submit",function(evt)
-  {
-  
-  var response = grecaptcha.getResponse();
-  if(response.length == 0) 
-  { 
-    //reCaptcha not verified
-    alert("please verify you are humann!"); 
-    evt.preventDefault();
-    return false;
-  }
-  //captcha verified
-  //do the rest of your validations here
-  
-});

@@ -5,13 +5,6 @@
     //form-validation
      function validate()
      {    
-        var response = grecaptcha.getResponse();
-        if(response.length == 0) 
-        { 
-         document.getElementById("captcha-error").innerHTML="please verify you are humann!";
-         evt.preventDefault();
-         return false;
-         }
          let name=document.getElementById("name");
          let birthday=document.getElementById("myDate");
          let place=document.getElementById("mySelect");
@@ -35,6 +28,16 @@
                          {
                              if(NotEmpty(password.value,"Password")&&alphaNumeric(password.value,"password")&&checkPassword(password.value,7,12))
                              {
+                                 var response = grecaptcha.getResponse();
+                                 if(response.length == 0) 
+                                 { 
+                                 document.getElementById("captcha-error").innerHTML="please verify you are humann!";
+                                 evt.preventDefault();
+                                 return false;
+                                 }
+                                 else
+                                 {
+                                 document.getElementById("captcha-error").innerHTML=" ";
                                  const user={
                                      name:name.value,
                                      birthday:birthday.value,
@@ -45,8 +48,9 @@
                                  };
                                  list.push(user)
                                  addToLocalstorage(list); 
-                                 alert("Form Submitted Successfully")
+                                 alert("Form Submitted Successfully");
                                  location.reload();
+                                 }
                              }                                                      
                          }
                      }

@@ -69,6 +69,7 @@
       x.type = "password";
     }
     }
+
     //add to local storage
     function addToLocalstorage(list) {
       localStorage.setItem('user', JSON.stringify(list));
